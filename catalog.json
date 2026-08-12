@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-08-12T00:00:00Z",
+  "items": [
+    {
+      "id": "5b64ef63-5514-4964-9f72-1d2ba224045c",
+      "kind": "extension",
+      "name": "Status Board",
+      "summary": "Poll a list of internal endpoints and show what is up, slow or down.",
+      "description": "A status page for the services your team runs. It polls each endpoint from inside the network on an interval and shows the result as a board, with the last error text when there is one. Go, standard library only — no database, no external assets, nothing persisted: the board is what the process has seen since it started.",
+      "author": "Launchpad",
+      "language": "Go",
+      "tags": ["monitoring", "status", "go", "operations"],
+      "version": "1.0.0",
+      "min_platform_version": "0.1.0",
+      "repo_url": "https://github.com/gopanair/launchpad-ext-status-board",
+      "ref": "v1.0.0",
+      "suggested_slug": "status-board",
+      "env": [
+        {
+          "name": "SERVICES",
+          "required": true,
+          "default": "",
+          "description": "Comma-separated name=url pairs, e.g. Wiki=https://wiki.internal/health, Billing=https://billing.internal/healthz"
+        },
+        {
+          "name": "BOARD_TITLE",
+          "required": false,
+          "default": "Service status",
+          "description": "Heading shown on the page."
+        },
+        {
+          "name": "CHECK_INTERVAL_SECONDS",
+          "required": false,
+          "default": "60",
+          "description": "How often every endpoint is polled. Minimum 5."
+        },
+        {
+          "name": "CHECK_TIMEOUT_SECONDS",
+          "required": false,
+          "default": "5",
+          "description": "Per-request timeout. Minimum 1."
+        }
+      ],
+      "notes": "The board makes outbound HTTP requests to whatever SERVICES names. Point it only at endpoints this install is meant to reach."
+    },
+    {
+      "id": "9e3e6c69-612b-46df-9aba-928b2be4f443",
+      "kind": "extension",
+      "name": "Webhook Inspector",
+      "summary": "See exactly what a third party is sending you: method, headers, query and body.",
+      "description": "Point any webhook at this app's /hook path and every request is captured and shown newest first. FastAPI. Nothing is persisted — the buffer lives in the process and is lost on restart, which is the right trade for a tool that routinely receives signatures, customer identifiers and one-time tokens. Authorization, Cookie and X-API-Key are recorded as redacted rather than dropped, because 'did they send one at all' is usually the real question.",
+      "author": "Launchpad",
+      "language": "Python",
+      "tags": ["webhooks", "debugging", "fastapi", "integration"],
+      "version": "1.0.0",
+      "min_platform_version": "0.1.0",
+      "repo_url": "https://github.com/gopanair/launchpad-ext-webhook-inspector",
+      "ref": "v1.0.0",
+      "suggested_slug": "webhook-inspector",
+      "env": [
+        {
+          "name": "MAX_REQUESTS",
+          "required": false,
+          "default": "50",
+          "description": "How many requests to keep in memory. 1 to 500."
+        },
+        {
+          "name": "WEBHOOK_TOKEN",
+          "required": false,
+          "default": "",
+          "description": "Optional shared secret. When set, a capture must carry X-Webhook-Token or ?token=."
+        }
+      ],
+      "notes": "The token is a convenience for handing the URL to an external sender, not a boundary — the app already sits behind Launchpad's authorization."
+    },
+    {
+      "id": "1003f1e0-4c97-4c57-bde2-fb941072a94e",
+      "kind": "extension",
+      "name": "Ops Console",
+      "summary": "On-call, the operations checklist by cadence, and four short runbooks.",
+      "description": "An internal operations console for the team that runs the platform. Next.js App Router, React 19, no dependencies beyond the framework. It reads no platform API at all: checklists and runbooks are content in the repository, and only what genuinely differs per install — team name, who is on call — comes from the environment.",
+      "author": "Launchpad",
+      "language": "JavaScript",
+      "tags": ["operations", "runbooks", "on-call", "nextjs"],
+      "version": "1.0.0",
+      "min_platform_version": "0.1.0",
+      "repo_url": "https://github.com/gopanair/launchpad-ext-ops-console",
+      "ref": "v1.0.0",
+      "suggested_slug": "ops-console",
+      "env": [
+        {
+          "name": "TEAM_NAME",
+          "required": false,
+          "default": "Platform",
+          "description": "Heading on the overview."
+        },
+        {
+          "name": "ONCALL_PRIMARY",
+          "required": false,
+          "default": "unassigned",
+          "description": "Who is holding the pager."
+        },
+        {
+          "name": "ONCALL_SECONDARY",
+          "required": false,
+          "default": "unassigned",
+          "description": "Who takes the weekly work."
+        },
+        {
+          "name": "ESCALATION_CHANNEL",
+          "required": false,
+          "default": "#platform-oncall",
+          "description": "Where to escalate when the primary is unreachable."
+        }
+      ],
+      "notes": "The overview is rendered per request, so changing an on-call name and restarting the app is enough — no rebuild."
+    },
+    {
+      "id": "f1fef3f5-b626-4bfb-9acd-d7d3d4de4342",
+      "kind": "example",
+      "name": "Flask Hello",
+      "summary": "The smallest complete Flask app — and the four things one has to get right here.",
+      "description": "A hello page that demonstrates a module-level app the Flask CLI can find, ProxyFix with x_prefix so url_for() emits links under /apps/{slug}, configuration from the environment, and a health endpoint that reports something real. The page shows the forwarded headers live, so removing the ProxyFix line and watching the links break is a two-minute lesson.",
+      "author": "Launchpad",
+      "language": "Python",
+      "tags": ["flask", "python", "starter", "example"],
+      "version": "1.0.0",
+      "min_platform_version": "0.1.0",
+      "zip_url": "https://github.com/gopanair/launchpad-example-flask-hello/archive/refs/tags/v1.0.0.zip",
+      "suggested_slug": "flask-hello",
+      "env": [
+        {
+          "name": "GREETING",
+          "required": false,
+          "default": "Hello from Launchpad",
+          "description": "The heading, and the greeting the JSON endpoint returns."
+        }
+      ],
+      "notes": "An example arrives as an ordinary uploaded app: it is yours to edit, and it is never updated from the catalog."
+    },
+    {
+      "id": "5ef17c95-2025-425e-bde2-abd3545a949e",
+      "kind": "example",
+      "name": "CSV Explorer",
+      "summary": "Upload a CSV, filter it, chart it, and take the cleaned data away again.",
+      "description": "A Streamlit app that is useful the day it is deployed. It ships with a seeded sample dataset so there is something on screen before anybody uploads anything, and uploaded data is held in session state and never written to disk — on a shared install a file written into the app's directory is one every other viewer can read.",
+      "author": "Launchpad",
+      "language": "Python",
+      "tags": ["streamlit", "data", "csv", "example"],
+      "version": "1.0.0",
+      "min_platform_version": "0.1.0",
+      "zip_url": "https://github.com/gopanair/launchpad-example-streamlit-explorer/archive/refs/tags/v1.0.0.zip",
+      "suggested_slug": "csv-explorer",
+      "env": [
+        {
+          "name": "APP_TITLE",
+          "required": false,
+          "default": "CSV Explorer",
+          "description": "Page title and heading."
+        }
+      ],
+      "notes": "Streamlit is the one framework that keeps the /apps/{slug} prefix rather than having it stripped; the platform passes it with --server.baseUrlPath."
+    },
+    {
+      "id": "57c7b315-cbf6-406f-bdfa-a036ab7f373c",
+      "kind": "example",
+      "name": "Next.js Dashboard",
+      "summary": "Stat tiles, a range switcher and a line chart — with no chart library.",
+      "description": "A metrics dashboard on the App Router: server components throughout except one client island for the chart, which is eighty lines of SVG rather than a 300 kB dependency. The selected metric and range live in the URL, so a view is a link somebody can paste into a chat. The data is generated from a seed in lib/metrics.js — swap that file for a query and nothing else changes.",
+      "author": "Launchpad",
+      "language": "JavaScript",
+      "tags": ["nextjs", "react", "dashboard", "example"],
+      "version": "1.0.0",
+      "min_platform_version": "0.1.0",
+      "zip_url": "https://github.com/gopanair/launchpad-example-nextjs-dashboard/archive/refs/tags/v1.0.0.zip",
+      "suggested_slug": "nextjs-dashboard",
+      "env": [],
+      "notes": "Do not set basePath or NODE_ENV on a Next.js app here: Launchpad injects the first at build time, and the second makes npm drop the devDependencies the build needs."
+    },
+    {
+      "id": "950ef10f-917e-44e2-b0a3-b0df25d15ce7",
+      "kind": "example",
+      "name": "Node API",
+      "summary": "A REST API and the page that uses it, on Express — the generic Node path.",
+      "description": "A task list with GET, POST, PATCH and DELETE, and a UI that calls it. The example is really about the three things that separate 'works locally' from 'works on the platform': binding HOST rather than 0.0.0.0, listening on PORT, and building client-side URLs relative to the document instead of the root.",
+      "author": "Launchpad",
+      "language": "JavaScript",
+      "tags": ["node", "express", "api", "example"],
+      "version": "1.0.0",
+      "min_platform_version": "0.1.0",
+      "zip_url": "https://github.com/gopanair/launchpad-example-node-api/archive/refs/tags/v1.0.0.zip",
+      "suggested_slug": "node-api",
+      "env": [],
+      "notes": "Any package.json with a start script is hostable this way; the app is told its mount point through BASE_PATH and the proxy strips the prefix."
+    },
+    {
+      "id": "c03cacd3-c1fd-4d2a-8a24-f3bd6f8f842e",
+      "kind": "example",
+      "name": "Weekly Report",
+      "summary": "A working web app that is only the Python standard library.",
+      "description": "A weekly delivery report rendered by http.server, with the same numbers offered as JSON and CSV. Because nothing supplies a server, the app owns the whole platform contract: it listens on PORT, binds HOST, uses BASE_PATH only for URLs that leave the process, and handles SIGTERM so a deploy does not kill it mid-response. Replace data.py with a query and app.py is unchanged.",
+      "author": "Launchpad",
+      "language": "Python",
+      "tags": ["python", "stdlib", "reporting", "example"],
+      "version": "1.0.0",
+      "min_platform_version": "0.1.0",
+      "zip_url": "https://github.com/gopanair/launchpad-example-python-report/archive/refs/tags/v1.0.0.zip",
+      "suggested_slug": "weekly-report",
+      "env": [
+        {
+          "name": "REPORT_TITLE",
+          "required": false,
+          "default": "Weekly delivery report",
+          "description": "Heading and page title."
+        }
+      ],
+      "notes": "This is the generic Python path: a requirements.txt naming none of the recognised frameworks means the app is started as `python app.py`."
+    }
+  ]
+}

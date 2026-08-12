@@ -1,0 +1,86 @@
+# Launchpad Gallery Catalog
+
+The catalog Launchpad fetches to populate its gallery: one JSON document
+listing the extensions and examples this team publishes.
+
+- **The document:** [`catalog.json`](catalog.json)
+- **Raw URL** (what an install is pointed at):
+  `https://raw.githubusercontent.com/gopanair/launchpad-gallery-catalog/main/catalog.json`
+
+## The catalog is data, never authority
+
+An entry names code and may *ask* for environment variables. It can never grant
+a capability, change a platform setting, widen a permission, or exempt an app
+from sleep. Everything an extension needs beyond its own code is an
+administrator's separate, audited action afterwards.
+
+## Two kinds, and nothing about them is symmetric
+
+| | Extension | Example |
+|---|---|---|
+| Who sees it | administrators only | anyone who may publish |
+| Source | `repo_url` at `ref` — an ordinary git-sourced app | `zip_url`, staged exactly as a human upload |
+| Updates | in place, when this file names a newer `version` | never |
+| Provenance does | drives the update path | nothing at all |
+
+An example is an ordinary uploaded app from the moment it lands: yours to edit,
+never updated from here, and unaffected if the gallery is switched off later.
+
+## What is in it
+
+| Name | Kind | Language | What |
+|---|---|---|---|
+| Status Board | extension | Go | Poll internal endpoints; show what is up, slow or down. |
+| Webhook Inspector | extension | Python (FastAPI) | See exactly what a third party is sending you. |
+| Ops Console | extension | JavaScript (Next.js) | On-call, the checklist by cadence, four runbooks. |
+| Flask Hello | example | Python (Flask) | The smallest complete Flask app, and the base-path trap. |
+| CSV Explorer | example | Python (Streamlit) | Upload, filter, chart, download. |
+| Next.js Dashboard | example | JavaScript (Next.js) | Stat tiles and a chart with no chart library. |
+| Node API | example | JavaScript (Express) | A REST API and the page that calls it. |
+| Weekly Report | example | Python (stdlib) | A web app that is only the standard library. |
+
+## Pointing an install at this file
+
+Where the catalog lives is **configuration, not a setting** — no API writes it,
+and `PUT /system/settings` naming `gallery_catalog_url` is refused by name.
+Either build with this as the compiled-in default
+(`config.DefaultGalleryCatalogURL`), or override it per install:
+
+```bash
+GALLERY_CATALOG_URL=https://raw.githubusercontent.com/gopanair/launchpad-gallery-catalog/main/catalog.json
+```
+
+Then set `gallery_deploy_mode` in Admin → Settings to `extensions_only` or
+`all`. It defaults to `off`, and off means **no outbound request at all** — a
+fresh install does not phone home to a repository nobody asked it to contact.
+
+## Editing this file
+
+- **`id` is a GUID and is the item's identity forever.** Changing it orphans
+  every install that took the item; changing the name, the repository or the
+  ref does not.
+- **`version` must move for an update to be offered**, and it is compared as a
+  semver. The version an install records is the one *running* — written when a
+  build succeeds, never at enqueue — so a failed update leaves the old number
+  because the old code is what is serving.
+- **An extension carries `repo_url` + `ref`; an example carries `zip_url`.**
+  Carrying both is a validation error and the entry is dropped.
+- **Parsing is lenient per document, strict per entry.** Unknown fields are
+  ignored so a newer catalog still works on an older binary, and a bad entry is
+  dropped on its own with a counted reason rather than emptying the gallery.
+- **Every URL in here must be `https`**, carry no credentials, and not resolve
+  into the install's own network. It is re-checked at every redirect hop.
+- **`schema_version` is 1.** A document declaring a higher number is a state —
+  "this catalog needs a newer Launchpad" — not a parse failure.
+
+## Publishing a new version of an item
+
+1. Commit the change in the item's own repository.
+2. Tag it (`v1.1.0`) and push the tag.
+3. In this file, bump the item's `version` and — for an extension — its `ref`.
+4. Commit. Installs pick it up on their next sync (boot, every six hours, or an
+   administrator's **Sync now**).
+
+For an example, step 3 means pointing `zip_url` at the new tag's archive; the
+example is still never updated in place, so this only affects copies taken from
+then on.
