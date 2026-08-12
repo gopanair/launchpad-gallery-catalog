@@ -10,11 +10,17 @@
       "description": "A status page for the services your team runs. It polls each endpoint from inside the network on an interval and shows the result as a board, with the last error text when there is one. Go, standard library only — no database, no external assets, nothing persisted: the board is what the process has seen since it started.",
       "author": "Launchpad",
       "language": "Go",
-      "tags": ["monitoring", "status", "go", "operations"],
+      "tags": [
+        "monitoring",
+        "status",
+        "go",
+        "operations"
+      ],
       "version": "1.0.0",
       "min_platform_version": "0.1.0",
       "repo_url": "https://github.com/gopanair/launchpad-ext-status-board",
       "ref": "v1.0.0",
+      "source_url": "https://github.com/gopanair/launchpad-ext-status-board",
       "suggested_slug": "status-board",
       "env": [
         {
@@ -52,11 +58,17 @@
       "description": "Point any webhook at this app's /hook path and every request is captured and shown newest first. FastAPI. Nothing is persisted — the buffer lives in the process and is lost on restart, which is the right trade for a tool that routinely receives signatures, customer identifiers and one-time tokens. Authorization, Cookie and X-API-Key are recorded as redacted rather than dropped, because 'did they send one at all' is usually the real question.",
       "author": "Launchpad",
       "language": "Python",
-      "tags": ["webhooks", "debugging", "fastapi", "integration"],
+      "tags": [
+        "webhooks",
+        "debugging",
+        "fastapi",
+        "integration"
+      ],
       "version": "1.0.0",
       "min_platform_version": "0.1.0",
       "repo_url": "https://github.com/gopanair/launchpad-ext-webhook-inspector",
       "ref": "v1.0.0",
+      "source_url": "https://github.com/gopanair/launchpad-ext-webhook-inspector",
       "suggested_slug": "webhook-inspector",
       "env": [
         {
@@ -82,11 +94,17 @@
       "description": "An internal operations console for the team that runs the platform. Next.js App Router, React 19, no dependencies beyond the framework. It reads no platform API at all: checklists and runbooks are content in the repository, and only what genuinely differs per install — team name, who is on call — comes from the environment.",
       "author": "Launchpad",
       "language": "JavaScript",
-      "tags": ["operations", "runbooks", "on-call", "nextjs"],
+      "tags": [
+        "operations",
+        "runbooks",
+        "on-call",
+        "nextjs"
+      ],
       "version": "1.0.0",
       "min_platform_version": "0.1.0",
       "repo_url": "https://github.com/gopanair/launchpad-ext-ops-console",
       "ref": "v1.0.0",
+      "source_url": "https://github.com/gopanair/launchpad-ext-ops-console",
       "suggested_slug": "ops-console",
       "env": [
         {
@@ -124,10 +142,16 @@
       "description": "A hello page that demonstrates a module-level app the Flask CLI can find, ProxyFix with x_prefix so url_for() emits links under /apps/{slug}, configuration from the environment, and a health endpoint that reports something real. The page shows the forwarded headers live, so removing the ProxyFix line and watching the links break is a two-minute lesson.",
       "author": "Launchpad",
       "language": "Python",
-      "tags": ["flask", "python", "starter", "example"],
+      "tags": [
+        "flask",
+        "python",
+        "starter",
+        "example"
+      ],
       "version": "1.0.0",
       "min_platform_version": "0.1.0",
       "zip_url": "https://github.com/gopanair/launchpad-example-flask-hello/archive/refs/tags/v1.0.0.zip",
+      "source_url": "https://github.com/gopanair/launchpad-example-flask-hello",
       "suggested_slug": "flask-hello",
       "env": [
         {
@@ -147,10 +171,16 @@
       "description": "A Streamlit app that is useful the day it is deployed. It ships with a seeded sample dataset so there is something on screen before anybody uploads anything, and uploaded data is held in session state and never written to disk — on a shared install a file written into the app's directory is one every other viewer can read.",
       "author": "Launchpad",
       "language": "Python",
-      "tags": ["streamlit", "data", "csv", "example"],
+      "tags": [
+        "streamlit",
+        "data",
+        "csv",
+        "example"
+      ],
       "version": "1.0.0",
       "min_platform_version": "0.1.0",
       "zip_url": "https://github.com/gopanair/launchpad-example-streamlit-explorer/archive/refs/tags/v1.0.0.zip",
+      "source_url": "https://github.com/gopanair/launchpad-example-streamlit-explorer",
       "suggested_slug": "csv-explorer",
       "env": [
         {
@@ -170,10 +200,16 @@
       "description": "A metrics dashboard on the App Router: server components throughout except one client island for the chart, which is eighty lines of SVG rather than a 300 kB dependency. The selected metric and range live in the URL, so a view is a link somebody can paste into a chat. The data is generated from a seed in lib/metrics.js — swap that file for a query and nothing else changes.",
       "author": "Launchpad",
       "language": "JavaScript",
-      "tags": ["nextjs", "react", "dashboard", "example"],
+      "tags": [
+        "nextjs",
+        "react",
+        "dashboard",
+        "example"
+      ],
       "version": "1.0.0",
       "min_platform_version": "0.1.0",
       "zip_url": "https://github.com/gopanair/launchpad-example-nextjs-dashboard/archive/refs/tags/v1.0.0.zip",
+      "source_url": "https://github.com/gopanair/launchpad-example-nextjs-dashboard",
       "suggested_slug": "nextjs-dashboard",
       "env": [],
       "notes": "Do not set basePath or NODE_ENV on a Next.js app here: Launchpad injects the first at build time, and the second makes npm drop the devDependencies the build needs."
@@ -186,10 +222,16 @@
       "description": "A task list with GET, POST, PATCH and DELETE, and a UI that calls it. The example is really about the three things that separate 'works locally' from 'works on the platform': binding HOST rather than 0.0.0.0, listening on PORT, and building client-side URLs relative to the document instead of the root.",
       "author": "Launchpad",
       "language": "JavaScript",
-      "tags": ["node", "express", "api", "example"],
+      "tags": [
+        "node",
+        "express",
+        "api",
+        "example"
+      ],
       "version": "1.0.0",
       "min_platform_version": "0.1.0",
       "zip_url": "https://github.com/gopanair/launchpad-example-node-api/archive/refs/tags/v1.0.0.zip",
+      "source_url": "https://github.com/gopanair/launchpad-example-node-api",
       "suggested_slug": "node-api",
       "env": [],
       "notes": "Any package.json with a start script is hostable this way; the app is told its mount point through BASE_PATH and the proxy strips the prefix."
@@ -202,10 +244,16 @@
       "description": "A weekly delivery report rendered by http.server, with the same numbers offered as JSON and CSV. Because nothing supplies a server, the app owns the whole platform contract: it listens on PORT, binds HOST, uses BASE_PATH only for URLs that leave the process, and handles SIGTERM so a deploy does not kill it mid-response. Replace data.py with a query and app.py is unchanged.",
       "author": "Launchpad",
       "language": "Python",
-      "tags": ["python", "stdlib", "reporting", "example"],
+      "tags": [
+        "python",
+        "stdlib",
+        "reporting",
+        "example"
+      ],
       "version": "1.0.0",
       "min_platform_version": "0.1.0",
       "zip_url": "https://github.com/gopanair/launchpad-example-python-report/archive/refs/tags/v1.0.0.zip",
+      "source_url": "https://github.com/gopanair/launchpad-example-python-report",
       "suggested_slug": "weekly-report",
       "env": [
         {
