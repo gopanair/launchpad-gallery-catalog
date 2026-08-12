@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-12T00:00:00Z",
+  "generated_at": "2026-08-12T18:00:00Z",
   "items": [
     {
       "id": "5b64ef63-5514-4964-9f72-1d2ba224045c",
@@ -264,6 +264,42 @@
         }
       ],
       "notes": "This is the generic Python path: a requirements.txt naming none of the recognised frameworks means the app is started as `python app.py`."
+    },
+    {
+      "id": "ca3089c5-5d0e-4214-85c6-3955db0b4b23",
+      "kind": "example",
+      "name": "MCP Server",
+      "summary": "A Model Context Protocol server an assistant can connect to — hosted like any other app.",
+      "description": "MCP's streamable-HTTP transport is an HTTP server, so a remote MCP server is an ordinary Launchpad app and this one is 250 lines of Python. It serves three tools over a folder of Markdown runbooks — list, search, read — and the notes it ships are samples to delete. What is worth copying is the shape: no authentication inside the app, because the gateway already refuses anything without an API key and strips the credential before it arrives; stateless sessions, so a deploy or an idle sleep can replace the process underneath a connected client; a landing page that works out its own endpoint URL from the forwarded headers; and every path a caller supplies resolved and checked to be inside the folder.",
+      "author": "Launchpad",
+      "language": "Python",
+      "tags": [
+        "mcp",
+        "ai",
+        "assistant",
+        "python",
+        "example"
+      ],
+      "version": "1.0.0",
+      "min_platform_version": "0.1.0",
+      "zip_url": "https://github.com/gopanair/launchpad-example-mcp-server/archive/refs/tags/v1.0.0.zip",
+      "source_url": "https://github.com/gopanair/launchpad-example-mcp-server",
+      "suggested_slug": "mcp-server",
+      "env": [
+        {
+          "name": "SERVER_NAME",
+          "required": false,
+          "default": "Runbooks",
+          "description": "What the server calls itself to a client, and the heading on its endpoint page."
+        },
+        {
+          "name": "NOTES_DIR",
+          "required": false,
+          "default": "notes",
+          "description": "The folder of Markdown the tools read. Relative paths are resolved inside the app's directory."
+        }
+      ],
+      "notes": "The app has no authentication of its own: create a key on its Settings → API keys tab and give it to the client as a bearer token. A client that can send a static Authorization header connects; one that requires MCP's OAuth flow cannot, because Launchpad authenticates with keys and runs no authorization server. The MCP SDK needs Python 3.10+, which the bundled .python-version asks uv to fetch at build time."
     }
   ]
 }
