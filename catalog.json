@@ -338,6 +338,30 @@
         }
       ],
       "notes": "Slack and email are absent until an administrator attaches them on the app's Integrations tab, and the app says so rather than offering a button that cannot work. On a shared-mode install the register lives on scratch, so a redeploy re-seeds it \u2014 which is the point of the example, not a limitation of it."
+    },
+    {
+      "id": "edadd889-75db-4b0f-b48e-ceb95aa6fc06",
+      "kind": "example",
+      "name": "Service Catalog",
+      "summary": "A directory of what runs, who owns it, and what calls what \u2014 one page and one JSON file.",
+      "description": "The static hosting example: HTML, CSS, one JavaScript file and data/services.json, with nothing built and nothing installed. Twenty-four invented services across seven teams, searchable by name, tag, team, language or on-call rotation, sortable by tier or by how many other services depend on one. Selecting a service draws its wiring \u2014 what it calls on the left, what calls it on the right \u2014 both read off the same depends_on array, so the two halves cannot disagree. Read it for the rule that catches everyone: the app is served under /apps/{slug}/, so every URL here is relative, and a root-absolute one would ask Launchpad for a file it does not have.",
+      "author": "Launchpad",
+      "language": "Static",
+      "tags": [
+        "static",
+        "html",
+        "javascript",
+        "catalog",
+        "reference",
+        "example"
+      ],
+      "version": "1.0.0",
+      "min_platform_version": "0.1.0",
+      "zip_url": "https://github.com/gopanair/launchpad-example-service-catalog/archive/refs/tags/v1.0.0.zip",
+      "source_url": "https://github.com/gopanair/launchpad-example-service-catalog",
+      "suggested_slug": "service-catalog",
+      "env": [],
+      "notes": "No configuration and no environment variables: a static app runs no commands and has no dependencies. Editing the catalog means editing data/services.json and redeploying \u2014 the release is the site."
     }
   ]
 }
