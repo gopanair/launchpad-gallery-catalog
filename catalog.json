@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-12T18:00:00Z",
+  "generated_at": "2026-08-14T00:00:00Z",
   "items": [
     {
       "id": "5b64ef63-5514-4964-9f72-1d2ba224045c",
       "kind": "extension",
       "name": "Status Board",
       "summary": "Poll a list of internal endpoints and show what is up, slow or down.",
-      "description": "A status page for the services your team runs. It polls each endpoint from inside the network on an interval and shows the result as a board, with the last error text when there is one. Go, standard library only — no database, no external assets, nothing persisted: the board is what the process has seen since it started.",
+      "description": "A status page for the services your team runs. It polls each endpoint from inside the network on an interval and shows the result as a board, with the last error text when there is one. Go, standard library only \u2014 no database, no external assets, nothing persisted: the board is what the process has seen since it started.",
       "author": "Launchpad",
       "language": "Go",
       "tags": [
@@ -55,7 +55,7 @@
       "kind": "extension",
       "name": "Webhook Inspector",
       "summary": "See exactly what a third party is sending you: method, headers, query and body.",
-      "description": "Point any webhook at this app's /hook path and every request is captured and shown newest first. FastAPI. Nothing is persisted — the buffer lives in the process and is lost on restart, which is the right trade for a tool that routinely receives signatures, customer identifiers and one-time tokens. Authorization, Cookie and X-API-Key are recorded as redacted rather than dropped, because 'did they send one at all' is usually the real question.",
+      "description": "Point any webhook at this app's /hook path and every request is captured and shown newest first. FastAPI. Nothing is persisted \u2014 the buffer lives in the process and is lost on restart, which is the right trade for a tool that routinely receives signatures, customer identifiers and one-time tokens. Authorization, Cookie and X-API-Key are recorded as redacted rather than dropped, because 'did they send one at all' is usually the real question.",
       "author": "Launchpad",
       "language": "Python",
       "tags": [
@@ -84,14 +84,14 @@
           "description": "Optional shared secret. When set, a capture must carry X-Webhook-Token or ?token=."
         }
       ],
-      "notes": "The token is a convenience for handing the URL to an external sender, not a boundary — the app already sits behind Launchpad's authorization."
+      "notes": "The token is a convenience for handing the URL to an external sender, not a boundary \u2014 the app already sits behind Launchpad's authorization."
     },
     {
       "id": "1003f1e0-4c97-4c57-bde2-fb941072a94e",
       "kind": "extension",
       "name": "Ops Console",
       "summary": "On-call, the operations checklist by cadence, and four short runbooks.",
-      "description": "An internal operations console for the team that runs the platform. Next.js App Router, React 19, no dependencies beyond the framework. It reads no platform API at all: checklists and runbooks are content in the repository, and only what genuinely differs per install — team name, who is on call — comes from the environment.",
+      "description": "An internal operations console for the team that runs the platform. Next.js App Router, React 19, no dependencies beyond the framework. It reads no platform API at all: checklists and runbooks are content in the repository, and only what genuinely differs per install \u2014 team name, who is on call \u2014 comes from the environment.",
       "author": "Launchpad",
       "language": "JavaScript",
       "tags": [
@@ -132,13 +132,13 @@
           "description": "Where to escalate when the primary is unreachable."
         }
       ],
-      "notes": "The overview is rendered per request, so changing an on-call name and restarting the app is enough — no rebuild."
+      "notes": "The overview is rendered per request, so changing an on-call name and restarting the app is enough \u2014 no rebuild."
     },
     {
       "id": "f1fef3f5-b626-4bfb-9acd-d7d3d4de4342",
       "kind": "example",
       "name": "Flask Hello",
-      "summary": "The smallest complete Flask app — and the four things one has to get right here.",
+      "summary": "The smallest complete Flask app \u2014 and the four things one has to get right here.",
       "description": "A hello page that demonstrates a module-level app the Flask CLI can find, ProxyFix with x_prefix so url_for() emits links under /apps/{slug}, configuration from the environment, and a health endpoint that reports something real. The page shows the forwarded headers live, so removing the ProxyFix line and watching the links break is a two-minute lesson.",
       "author": "Launchpad",
       "language": "Python",
@@ -168,7 +168,7 @@
       "kind": "example",
       "name": "CSV Explorer",
       "summary": "Upload a CSV, filter it, chart it, and take the cleaned data away again.",
-      "description": "A Streamlit app that is useful the day it is deployed. It ships with a seeded sample dataset so there is something on screen before anybody uploads anything, and uploaded data is held in session state and never written to disk — on a shared install a file written into the app's directory is one every other viewer can read.",
+      "description": "A Streamlit app that is useful the day it is deployed. It ships with a seeded sample dataset so there is something on screen before anybody uploads anything, and uploaded data is held in session state and never written to disk \u2014 on a shared install a file written into the app's directory is one every other viewer can read.",
       "author": "Launchpad",
       "language": "Python",
       "tags": [
@@ -196,8 +196,8 @@
       "id": "57c7b315-cbf6-406f-bdfa-a036ab7f373c",
       "kind": "example",
       "name": "Next.js Dashboard",
-      "summary": "Stat tiles, a range switcher and a line chart — with no chart library.",
-      "description": "A metrics dashboard on the App Router: server components throughout except one client island for the chart, which is eighty lines of SVG rather than a 300 kB dependency. The selected metric and range live in the URL, so a view is a link somebody can paste into a chat. The data is generated from a seed in lib/metrics.js — swap that file for a query and nothing else changes.",
+      "summary": "Stat tiles, a range switcher and a line chart \u2014 with no chart library.",
+      "description": "A metrics dashboard on the App Router: server components throughout except one client island for the chart, which is eighty lines of SVG rather than a 300 kB dependency. The selected metric and range live in the URL, so a view is a link somebody can paste into a chat. The data is generated from a seed in lib/metrics.js \u2014 swap that file for a query and nothing else changes.",
       "author": "Launchpad",
       "language": "JavaScript",
       "tags": [
@@ -218,7 +218,7 @@
       "id": "950ef10f-917e-44e2-b0a3-b0df25d15ce7",
       "kind": "example",
       "name": "Node API",
-      "summary": "A REST API and the page that uses it, on Express — the generic Node path.",
+      "summary": "A REST API and the page that uses it, on Express \u2014 the generic Node path.",
       "description": "A task list with GET, POST, PATCH and DELETE, and a UI that calls it. The example is really about the three things that separate 'works locally' from 'works on the platform': binding HOST rather than 0.0.0.0, listening on PORT, and building client-side URLs relative to the document instead of the root.",
       "author": "Launchpad",
       "language": "JavaScript",
@@ -269,8 +269,8 @@
       "id": "ca3089c5-5d0e-4214-85c6-3955db0b4b23",
       "kind": "example",
       "name": "MCP Server",
-      "summary": "A Model Context Protocol server an assistant can connect to — hosted like any other app.",
-      "description": "MCP's streamable-HTTP transport is an HTTP server, so a remote MCP server is an ordinary Launchpad app and this one is 250 lines of Python. It serves three tools over a folder of Markdown runbooks — list, search, read — and the notes it ships are samples to delete. What is worth copying is the shape: no authentication inside the app, because the gateway already refuses anything without an API key and strips the credential before it arrives; stateless sessions, so a deploy or an idle sleep can replace the process underneath a connected client; a landing page that works out its own endpoint URL from the forwarded headers; and every path a caller supplies resolved and checked to be inside the folder.",
+      "summary": "A Model Context Protocol server an assistant can connect to \u2014 hosted like any other app.",
+      "description": "MCP's streamable-HTTP transport is an HTTP server, so a remote MCP server is an ordinary Launchpad app and this one is 250 lines of Python. It serves three tools over a folder of Markdown runbooks \u2014 list, search, read \u2014 and the notes it ships are samples to delete. What is worth copying is the shape: no authentication inside the app, because the gateway already refuses anything without an API key and strips the credential before it arrives; stateless sessions, so a deploy or an idle sleep can replace the process underneath a connected client; a landing page that works out its own endpoint URL from the forwarded headers; and every path a caller supplies resolved and checked to be inside the folder.",
       "author": "Launchpad",
       "language": "Python",
       "tags": [
@@ -299,7 +299,45 @@
           "description": "The folder of Markdown the tools read. Relative paths are resolved inside the app's directory."
         }
       ],
-      "notes": "The app has no authentication of its own: create a key on its Settings → API keys tab and give it to the client as a bearer token. A client that can send a static Authorization header connects; one that requires MCP's OAuth flow cannot, because Launchpad authenticates with keys and runs no authorization server. The MCP SDK needs Python 3.10+, which the bundled .python-version asks uv to fetch at build time."
+      "notes": "The app has no authentication of its own: create a key on its Settings \u2192 API keys tab and give it to the client as a bearer token. A client that can send a static Authorization header connects; one that requires MCP's OAuth flow cannot, because Launchpad authenticates with keys and runs no authorization server. The MCP SDK needs Python 3.10+, which the bundled .python-version asks uv to fetch at build time."
+    },
+    {
+      "id": "dbf515d5-b672-4aba-bbbe-4169dc25d033",
+      "kind": "example",
+      "name": "Stockroom",
+      "summary": "An inventory register that gets its own report out: PDF, Slack, email, on demand or on a schedule.",
+      "description": "Five aisles, forty lines, and every receipt and issue on a ledger written in the same transaction as the count it changes. Go with the standard library and html/template; SQLite embedded through modernc.org/sqlite, because Launchpad builds Go apps with CGO off. One report is built once and rendered three ways, so the PDF, the Slack comment and the email body cannot quote different numbers. This is the example to read for an app talking back to Launchpad without an SDK: /api/v1/app/self, the two notify routes, the run list and a scheduled task's own log, spoken directly in about two hundred lines.",
+      "author": "Launchpad",
+      "language": "Go",
+      "tags": [
+        "go",
+        "sqlite",
+        "crud",
+        "reporting",
+        "slack",
+        "scheduled-tasks",
+        "example"
+      ],
+      "version": "1.0.0",
+      "min_platform_version": "0.1.0",
+      "zip_url": "https://github.com/gopanair/launchpad-example-stockroom/archive/refs/tags/v1.0.0.zip",
+      "source_url": "https://github.com/gopanair/launchpad-example-stockroom",
+      "suggested_slug": "stockroom",
+      "env": [
+        {
+          "name": "APP_NAME",
+          "required": false,
+          "default": "Stockroom",
+          "description": "The wordmark, the PDF header, and the name this app's mail is sent under."
+        },
+        {
+          "name": "STOCKROOM_DATA_DIR",
+          "required": false,
+          "default": "",
+          "description": "Where the SQLite file goes. Leave it unset: the app prefers a writable storage mount, then the scratch directory, and says on its Platform tab which one it picked."
+        }
+      ],
+      "notes": "Slack and email are absent until an administrator attaches them on the app's Integrations tab, and the app says so rather than offering a button that cannot work. On a shared-mode install the register lives on scratch, so a redeploy re-seeds it \u2014 which is the point of the example, not a limitation of it."
     }
   ]
 }
