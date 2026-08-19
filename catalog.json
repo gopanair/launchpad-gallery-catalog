@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-14T03:00:00Z",
+  "generated_at": "2026-08-19T20:15:00Z",
   "items": [
     {
       "id": "5b64ef63-5514-4964-9f72-1d2ba224045c",
@@ -362,6 +362,49 @@
       "suggested_slug": "service-catalog",
       "env": [],
       "notes": "No configuration and no environment variables: a static app runs no commands and has no dependencies. Editing the catalog means editing data/services.json and redeploying \u2014 the release is the site."
+    },
+    {
+      "id": "7a172cbf-e666-4db7-b1a5-7a8b7c35baf3",
+      "kind": "extension",
+      "name": "Volume Browser",
+      "summary": "Browse, upload and manage the EFS volumes attached to an app.",
+      "description": "A file manager for attached storage. It reads LAUNCHPAD_STORAGE \u2014 the platform's own declaration of what is mounted \u2014 and offers the ordinary operations on every EFS volume it finds: browse, download, upload, new folder, rename and delete. Nothing is configured by hand, and a mount that is declared but not on the filesystem is shown with the reason rather than left out. Object stores are listed and deliberately not browsable: Mountpoint has no rename, no append and no real directories. Go, standard library only. Isolated mode, since durable storage is attached below a boundary a shared process does not have.",
+      "author": "Launchpad",
+      "language": "Go",
+      "tags": [
+        "storage",
+        "efs",
+        "files",
+        "go",
+        "operations"
+      ],
+      "version": "1.0.0",
+      "min_platform_version": "0.1.0",
+      "repo_url": "https://github.com/gopanair/launchpad-ext-volume-browser",
+      "ref": "v1.0.0",
+      "source_url": "https://github.com/gopanair/launchpad-ext-volume-browser",
+      "suggested_slug": "volume-browser",
+      "env": [
+        {
+          "name": "BROWSER_TITLE",
+          "required": false,
+          "default": "Volume browser",
+          "description": "Heading shown on the page."
+        },
+        {
+          "name": "MAX_UPLOAD_MB",
+          "required": false,
+          "default": "1024",
+          "description": "Per-file upload limit in megabytes. A file over it is refused and nothing partial is left behind."
+        },
+        {
+          "name": "READ_ONLY",
+          "required": false,
+          "default": "",
+          "description": "Set to 1 to show every volume read-only regardless of how it is mounted."
+        }
+      ],
+      "notes": "Attach the volumes this app should manage, then redeploy it \u2014 a storage mapping takes effect on the next deployment. It shows whatever those mounts contain to anyone who can open the app, so keep its visibility to the people who should see the data."
     }
   ]
 }
