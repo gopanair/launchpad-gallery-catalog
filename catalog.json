@@ -405,6 +405,55 @@
         }
       ],
       "notes": "Attach the volumes this app should manage, then redeploy it \u2014 a storage mapping takes effect on the next deployment. It shows whatever those mounts contain to anyone who can open the app, so keep its visibility to the people who should see the data."
+    },
+    {
+      "id": "b18c04f3-3fb6-4048-a17c-2ffe48ddb0e1",
+      "kind": "example",
+      "name": "Orders",
+      "summary": "Read a SQLite database off an attached EFS volume \u2014 sortable, filterable, read-only.",
+      "description": "The reading side of the storage example: something else \u2014 a nightly export, an operations job, a person with the volume browser \u2014 leaves orders.db on an EFS volume, and this app shows the orders table as a list you can sort, filter and download as CSV. Python, standard library only: http.server, sqlite3, csv, html. It finds the volume from LAUNCHPAD_STORAGE (the first declared one, never an object store, because Mountpoint has no file locking and SQLite needs it) and opens the file read-only, so it can never be the process that damages the data it shows. The half worth reading is what happens when the database is not there yet, which on a volume is normal for a while: the page names the volume, the exact path it expected and what has to happen, and a Check again button re-reads the declaration and re-stats the mount \u2014 nothing is cached, so the file arriving needs no redeploy. Sorting and filtering arrive on the query string, so the schema is discovered with PRAGMA table_info and a sort column is accepted only if the schema just named it; filter text is always a bound parameter.",
+      "author": "Launchpad",
+      "language": "Python",
+      "tags": [
+        "storage",
+        "efs",
+        "sqlite",
+        "python",
+        "example",
+        "read-only"
+      ],
+      "version": "1.0.0",
+      "min_platform_version": "0.1.0",
+      "zip_url": "https://github.com/gopanair/launchpad-example-orders-viewer/archive/refs/tags/v1.0.0.zip",
+      "source_url": "https://github.com/gopanair/launchpad-example-orders-viewer",
+      "suggested_slug": "orders-viewer",
+      "env": [
+        {
+          "name": "VIEWER_TITLE",
+          "required": false,
+          "default": "Orders",
+          "description": "Heading and page title."
+        },
+        {
+          "name": "ORDERS_DB",
+          "required": false,
+          "default": "orders.db",
+          "description": "The database file, relative to the volume root. A path that would leave the volume is refused."
+        },
+        {
+          "name": "ORDERS_TABLE",
+          "required": false,
+          "default": "orders",
+          "description": "The table or view to show. If it is missing, the page lists the tables that are there."
+        },
+        {
+          "name": "PAGE_SIZE",
+          "required": false,
+          "default": "100",
+          "description": "Rows per page. Clamped to 10-1000."
+        }
+      ],
+      "notes": "Needs isolated mode and an EFS volume attached, because a shared process has no boundary to mount storage below. A storage mapping takes effect on the next deployment, so redeploy after attaching one. The app never writes: the connection is read-only, which also means a database in WAL mode cannot be opened from a read-only mount \u2014 ship it with PRAGMA journal_mode=DELETE. tools/make_orders_db.py in the repo writes a sample orders.db to upload."
     }
   ]
 }
