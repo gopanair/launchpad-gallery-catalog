@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-24T15:50:00Z",
+  "generated_at": "2026-08-24T16:20:00Z",
   "items": [
     {
       "id": "5b64ef63-5514-4964-9f72-1d2ba224045c",
@@ -471,10 +471,10 @@
         "approvals",
         "viewer-identity"
       ],
-      "version": "1.0.0",
+      "version": "1.0.1",
       "min_platform_version": "0.1.0",
       "repo_url": "https://github.com/gopanair/launchpad-ext-request-desk",
-      "ref": "v1.0.0",
+      "ref": "v1.0.1",
       "source_url": "https://github.com/gopanair/launchpad-ext-request-desk",
       "suggested_slug": "request-desk",
       "env": [
