@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-19T20:15:00Z",
+  "generated_at": "2026-08-24T15:50:00Z",
   "items": [
     {
       "id": "5b64ef63-5514-4964-9f72-1d2ba224045c",
@@ -454,6 +454,44 @@
         }
       ],
       "notes": "Needs isolated mode and an EFS volume attached, because a shared process has no boundary to mount storage below. A storage mapping takes effect on the next deployment, so redeploy after attaching one. The app never writes: the connection is read-only, which also means a database in WAL mode cannot be opened from a read-only mount \u2014 ship it with PRAGMA journal_mode=DELETE. tools/make_orders_db.py in the repo writes a sample orders.db to upload."
+    },
+    {
+      "id": "a5c4129d-9633-4840-bfdf-69c5415abe3b",
+      "kind": "extension",
+      "name": "Request Desk",
+      "summary": "A request-and-approval desk on embedded SQLite, where who may do what comes from the identity Launchpad supplies.",
+      "description": "Somebody asks for a monitor, a conference ticket, a licence; somebody else approves or refuses it. FastAPI and the standard library's sqlite3 \u2014 no JavaScript framework, no build step, nothing beyond the two lines in requirements.txt. What it is really for is the seam underneath: Launchpad answers one question the app cannot forge \u2014 who is looking \u2014 by resolving the signed act-for blob the request arrives with, and everything after that is the app's own directory, its own groups and its own rule. Three sources of authority, deliberately not one. The platform's role on the app (owner, editor, install administrator) administers the desk and nothing else, because 'may redeploy this app' is not 'may approve an expense'; a desk group an editor put you in is the ordinary path; and a desk group linked to a Launchpad group is the same thing with the directory doing the bookkeeping. Two groups ship \u2014 Requesters and Approvers \u2014 and both are ordinary rows an editor can reshape. An Access page renders the identity the platform supplied beside the decision the app made and the sentences connecting them, which is the part worth reading before building your own. desk.py imports nothing from Launchpad, so the rule is tested without a running install: 31 tests construct callers by hand.",
+      "author": "Launchpad",
+      "language": "Python",
+      "tags": [
+        "identity",
+        "authorization",
+        "sqlite",
+        "fastapi",
+        "approvals",
+        "viewer-identity"
+      ],
+      "version": "1.0.0",
+      "min_platform_version": "0.1.0",
+      "repo_url": "https://github.com/gopanair/launchpad-ext-request-desk",
+      "ref": "v1.0.0",
+      "source_url": "https://github.com/gopanair/launchpad-ext-request-desk",
+      "suggested_slug": "request-desk",
+      "env": [
+        {
+          "name": "DESK_TITLE",
+          "required": false,
+          "default": "Request Desk",
+          "description": "Heading and page title."
+        },
+        {
+          "name": "DB_PATH",
+          "required": false,
+          "default": "",
+          "description": "Where the SQLite file lives. Unset, the app uses the first writable volume mapped to it, and failing that its own filesystem \u2014 which a restart replaces. The page footer always says which of the three it got."
+        }
+      ],
+      "notes": "Two things have to be true before it can recognise anybody. Viewer identity must be switched on for this app \u2014 it is off by default and a system administrator turns it on \u2014 and the app must not be public, because Launchpad withholds the email address from a public app and the address is how this desk identifies people. The app explains both on the page rather than looking broken. For data that survives a restart, map a volume: that means isolated mode, since shared mode refuses a storage mapping at deploy time."
     }
   ]
 }
