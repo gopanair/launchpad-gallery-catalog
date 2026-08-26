@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-26T16:00:00Z",
+  "generated_at": "2026-08-26T21:00:00Z",
   "items": [
     {
       "id": "5b64ef63-5514-4964-9f72-1d2ba224045c",
@@ -661,6 +661,45 @@
         }
       ],
       "notes": "Launchpad decides which document is the app by counting the .Rmd files at the repository root, so there is exactly one here; two is ambiguous and the deploy refuses by name. That is also why the sample generator lives in data/ rather than beside the document \u2014 a root .R file is scanned for plumber annotations, so a helper script could otherwise decide the whole repository's framework. To refresh the numbers, deploy again, or give the app a render schedule, which is a full deploy on a cron expression."
+    },
+    {
+      "id": "0d5f2c11-9a7e-4c8a-b2f0-6e4b1c7d9a30",
+      "kind": "extension",
+      "name": "Migration Console",
+      "summary": "Request, approve and carry out moves of an app from one Launchpad install to another.",
+      "description": "A change-request workflow for promotion between installs. A developer raises a request against one specific successful release of an app they own; a named reviewer reads it, looks at the attached documents and approves or rejects; the approved release is then pushed to the target install, straight away or at a scheduled time. The submitter never picks the destination \u2014 the first successful deploy binds a source app to a target app and every later request follows that link \u2014 and the approver chooses what the app is called there and who may see it, with the choice carrying to the next migration. Notes and documents live in two places: standing ones on the app, inherited by every request for it, and per-request ones for that release. The requester can name other people on a request, who can then read it, watch it and raise the next one. Everything is recorded per app, so \"what has ever shipped from this app, and where is it now\" is one page. Go, html/template and htmx, with its own Postgres database \u2014 no Node, no bundler, and no outbound request to anything but the installs you configure.",
+      "author": "Launchpad",
+      "language": "Go",
+      "tags": [
+        "governance",
+        "promotion",
+        "change-management",
+        "approvals",
+        "go"
+      ],
+      "version": "1.0.0",
+      "min_platform_version": "0.2.1",
+      "repo_url": "https://github.com/gopanair/launchpad-ext-migration-console",
+      "ref": "v1.0.0",
+      "source_url": "https://github.com/gopanair/launchpad-ext-migration-console",
+      "suggested_slug": "migration-console",
+      "env": [
+        {
+          "name": "DATABASE_URL",
+          "required": true,
+          "default": "",
+          "sensitive": true,
+          "description": "A Postgres database for the console's own records \u2014 requests, approvals, documents and the ledger. Use one you already back up: this is an audit record of production deploys, not a cache. postgres://user:password@host:5432/dbname"
+        },
+        {
+          "name": "TARGET_KEY_SECRET",
+          "required": true,
+          "default": "",
+          "sensitive": true,
+          "description": "Any long passphrase. Each target install's deploy key is encrypted with it before it is written to the database, so a database backup is not a copy of your estate's push credentials."
+        }
+      ],
+      "notes": "Needs a Launchpad that can mint a read-scoped deploy key \u2014 0.2.1 or later. Until then the Gallery shows it as needing a newer Launchpad rather than installing an app that cannot authenticate. The console holds a deploy key for each install it can push to, and each of those can deploy to any app on that install. Install it on the install your developers use, give it a read-scoped deploy key here and a deploy-scoped key on each target, and add a scheduled task pointing at /tasks/tick. The Install page inside the app lists every step and shows what is still outstanding."
     }
   ]
 }

@@ -35,6 +35,7 @@ never updated from here, and unaffected if the gallery is switched off later.
 | Ops Console | extension | JavaScript (Next.js) | On-call, the checklist by cadence, four runbooks. |
 | Volume Browser | extension | Go | Browse, upload and manage the EFS volumes attached to an app. |
 | Request Desk | extension | Python (FastAPI) | Request and approval on embedded SQLite, driven by the identity Launchpad supplies. |
+| Migration Console | extension | Go | Request, approve and carry out moves of an app from one Launchpad install to another. |
 | Flask Hello | example | Python (Flask) | The smallest complete Flask app, and the base-path trap. |
 | CSV Explorer | example | Python (Streamlit) | Upload, filter, chart, download. |
 | Next.js Dashboard | example | JavaScript (Next.js) | Stat tiles and a chart with no chart library. |
@@ -82,6 +83,15 @@ fresh install does not phone home to a repository nobody asked it to contact.
   into the install's own network. It is re-checked at every redirect hop.
 - **`schema_version` is 1.** A document declaring a higher number is a state —
   "this catalog needs a newer Launchpad" — not a parse failure.
+- **An `env` field may be marked `"sensitive": true`.** The deploy dialog then
+  collects it as a password and never renders it back. It changes nothing about
+  the value — every environment variable is encrypted under the install's own
+  key ring either way — and it grants nothing: the catalog *asked*, and what
+  the deployer typed is an ordinary app variable an editor can replace.
+- **`min_platform_version` is what stops an entry installing onto a build that
+  cannot run it.** An install below it renders "needs a newer Launchpad", which
+  is a state the gallery already has, rather than deploying an app that fails
+  at its first API call.
 
 ## Publishing a new version of an item
 
