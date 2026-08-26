@@ -33,11 +33,21 @@ never updated from here, and unaffected if the gallery is switched off later.
 | Status Board | extension | Go | Poll internal endpoints; show what is up, slow or down. |
 | Webhook Inspector | extension | Python (FastAPI) | See exactly what a third party is sending you. |
 | Ops Console | extension | JavaScript (Next.js) | On-call, the checklist by cadence, four runbooks. |
+| Volume Browser | extension | Go | Browse, upload and manage the EFS volumes attached to an app. |
+| Request Desk | extension | Python (FastAPI) | Request and approval on embedded SQLite, driven by the identity Launchpad supplies. |
 | Flask Hello | example | Python (Flask) | The smallest complete Flask app, and the base-path trap. |
 | CSV Explorer | example | Python (Streamlit) | Upload, filter, chart, download. |
 | Next.js Dashboard | example | JavaScript (Next.js) | Stat tiles and a chart with no chart library. |
 | Node API | example | JavaScript (Express) | A REST API and the page that calls it. |
 | Weekly Report | example | Python (stdlib) | A web app that is only the standard library. |
+| MCP Server | example | Python | A Model Context Protocol server, hosted like any other app. |
+| Stockroom | example | Go (SQLite) | An inventory register that gets its own report out — PDF, Slack, email, on a schedule. |
+| Service Catalog | example | Static | What runs, who owns it, what calls what — one page and one JSON file. |
+| Orders | example | Python | A SQLite database read off an attached EFS volume, read-only. |
+| Support Review | example | Python (notebook) | A notebook executed once at deploy time and served as the document that fell out. |
+| A/B Test | example | R (Shiny) | Two variants in; a difference, an interval and a p-value out. |
+| Stats API | example | R (plumber) | R's base statistics behind five HTTP routes. |
+| Data Quality Report | example | R (R Markdown) | Point it at a CSV; it renders a page saying what is wrong with the file. |
 
 ## Pointing an install at this file
 

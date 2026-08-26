@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-26T12:00:00Z",
+  "generated_at": "2026-08-26T16:00:00Z",
   "items": [
     {
       "id": "5b64ef63-5514-4964-9f72-1d2ba224045c",
@@ -541,6 +541,126 @@
         }
       ],
       "notes": "Nothing is re-rendered by a restart: to refresh the numbers, deploy again, or give the app's Overview tab a re-render schedule, which is a full deploy on a cron expression. The engine is nbconvert, the default for an .ipynb; a repo wanting a contents sidebar, code folding and callouts declares [notebook] engine = \"quarto\" instead, which is refused rather than substituted on an install whose operator has not installed Quarto. Jobs work here, unlike on a static app \u2014 a notebook release has an interpreter \u2014 but viewer identity does not, because at run time there is no process to hold an app token."
+    },
+    {
+      "id": "a413936d-2f23-47a4-b658-896d194216f9",
+      "kind": "example",
+      "name": "A/B Test",
+      "summary": "Two variants' visitors and conversions in, and a difference, a confidence interval and a p-value out.",
+      "description": "The Shiny example. Type in the numbers from two variants and the app runs a two-proportion test \u2014 but the verdict line is deliberately not the whole answer: the interval underneath it is what separates 'there is no effect' from 'this test was too small to see one', and a second tab answers the question people actually arrive with, which is how many they need before it is worth looking at. No data files, no database, nothing stored, so the app is the same on every install. What is worth copying is the shape rather than the statistics: nothing binds a port and nothing builds a URL, because Launchpad starts a Shiny app by evaluating shiny::runApp(appDir, host, port) and Shiny derives its own asset and WebSocket paths from the page it is served at; and configuration is read into ordinary variables at the top of app.R rather than inside a reactive, because an environment variable is configuration and changing it is a restart.",
+      "author": "Launchpad",
+      "language": "R",
+      "tags": [
+        "shiny",
+        "r",
+        "statistics",
+        "ab-testing",
+        "example"
+      ],
+      "version": "1.0.0",
+      "min_platform_version": "0.2.0",
+      "zip_url": "https://github.com/gopanair/launchpad-example-shiny-abtest/archive/refs/tags/v1.0.0.zip",
+      "source_url": "https://github.com/gopanair/launchpad-example-shiny-abtest",
+      "suggested_slug": "ab-test",
+      "env": [
+        {
+          "name": "APP_TITLE",
+          "required": false,
+          "default": "A/B Test",
+          "description": "Page title and heading."
+        },
+        {
+          "name": "SIGNIFICANCE_LEVEL",
+          "required": false,
+          "default": "0.05",
+          "description": "The threshold, as a proportion. Anything outside 0 to 0.5 falls back to 0.05."
+        }
+      ],
+      "notes": "One R process serves everybody: Shiny is single-threaded, so a reactive that takes four seconds is a four-second queue for every viewer at once, not just the one who moved the slider. That is why everything here is prop.test and power.prop.test rather than a simulation. Anything genuinely slow belongs in a Launchpad job the page polls for, never in a reactive."
+    },
+    {
+      "id": "aa251fc3-eaba-4edb-8071-a6a60bc8e66a",
+      "kind": "example",
+      "name": "Stats API",
+      "summary": "R's base statistics behind five HTTP routes, for a service that would rather not reimplement them.",
+      "description": "The plumber example. Five routes \u2014 a summary with Tukey's fences, a least-squares trend with prediction intervals, Welch's t-test and Mann-Whitney side by side, a PNG histogram, and a health check that names the R version \u2014 all computed from the request body, with nothing stored and nothing fetched. Two things are worth copying. Routes are mounted at the root: plumber is a prefix-stripping framework here, so the platform forwards /summary rather than /apps/{slug}/summary, and a route that sends a Location back sends the bare path because the proxy re-adds the prefix on the way out. And a request body is server-side input: MAX_VALUES caps how many numbers one request may carry, because plumber, like Shiny, is one R process and a caller who posts a million values would otherwise decide how long the app is busy for.",
+      "author": "Launchpad",
+      "language": "R",
+      "tags": [
+        "plumber",
+        "r",
+        "api",
+        "statistics",
+        "example"
+      ],
+      "version": "1.0.0",
+      "min_platform_version": "0.2.0",
+      "zip_url": "https://github.com/gopanair/launchpad-example-plumber-stats/archive/refs/tags/v1.0.0.zip",
+      "source_url": "https://github.com/gopanair/launchpad-example-plumber-stats",
+      "suggested_slug": "stats-api",
+      "env": [
+        {
+          "name": "API_TITLE",
+          "required": false,
+          "default": "Stats API",
+          "description": "Heading on the index page and in /health."
+        },
+        {
+          "name": "MAX_VALUES",
+          "required": false,
+          "default": "10000",
+          "description": "Most values one request may carry. Anything below 10 falls back to the default."
+        }
+      ],
+      "notes": "The file is called plumber.R because that is the name plumber::plumb() finds with no argument, and it is what Launchpad detects \u2014 by a line scan for the #* annotations, never a parse, so a file that merely mentions plumber in a comment is not mistaken for an API. The generated Swagger UI at __docs__/ works, but the spec describes the routes as plumber sees them, at the root, while the browser is at /apps/{slug}/: read the shapes there and send real requests against the app's own URL."
+    },
+    {
+      "id": "fe590d58-6c6a-492f-b4be-1a848bad4c9c",
+      "kind": "example",
+      "name": "Data Quality Report",
+      "summary": "Point it at a CSV and it renders a page saying what is wrong with the file.",
+      "description": "The R Markdown example. Seven checks \u2014 missing values, duplicate keys, categories that are the same thing spelled two ways, numbers outside Tukey's fences, and a histogram of every numeric column \u2014 over whatever REPORT_DATA names, with a seeded 1,209-row delivery export committed so there is a real report on screen before anybody points it at their own data. It is rendered once, at build time: Launchpad runs rmarkdown::render and serves the directory that falls out, so there is no R process behind the page and a re-render is a deploy, not a restart. Two sharp edges are stated rather than hidden. The render sees the app's environment variables and the output is published, so a document that prints a connection string has published it to everyone who can read the page. And a missing input file is a section, not a crash \u2014 on a fresh install the nightly export has not landed yet, and the report says so on its own front page instead of making somebody read a build log.",
+      "author": "Launchpad",
+      "language": "R",
+      "tags": [
+        "rmarkdown",
+        "r",
+        "reporting",
+        "data-quality",
+        "example"
+      ],
+      "version": "1.0.0",
+      "min_platform_version": "0.2.0",
+      "zip_url": "https://github.com/gopanair/launchpad-example-rmarkdown-quality/archive/refs/tags/v1.0.0.zip",
+      "source_url": "https://github.com/gopanair/launchpad-example-rmarkdown-quality",
+      "suggested_slug": "data-quality",
+      "env": [
+        {
+          "name": "REPORT_TITLE",
+          "required": false,
+          "default": "Data Quality Report",
+          "description": "Document title."
+        },
+        {
+          "name": "REPORT_DATA",
+          "required": false,
+          "default": "data/deliveries.csv",
+          "description": "The CSV to profile, relative to the release directory."
+        },
+        {
+          "name": "REPORT_KEY",
+          "required": false,
+          "default": "",
+          "description": "The column expected to be unique. Defaults to the first column."
+        },
+        {
+          "name": "REPORT_MAX_ROWS",
+          "required": false,
+          "default": "200000",
+          "description": "Row cap on the read. The report says when it hit it."
+        }
+      ],
+      "notes": "Launchpad decides which document is the app by counting the .Rmd files at the repository root, so there is exactly one here; two is ambiguous and the deploy refuses by name. That is also why the sample generator lives in data/ rather than beside the document \u2014 a root .R file is scanned for plumber annotations, so a helper script could otherwise decide the whole repository's framework. To refresh the numbers, deploy again, or give the app a render schedule, which is a full deploy on a cron expression."
     }
   ]
 }
