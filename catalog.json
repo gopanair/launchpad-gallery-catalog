@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-24T16:20:00Z",
+  "generated_at": "2026-08-26T12:00:00Z",
   "items": [
     {
       "id": "5b64ef63-5514-4964-9f72-1d2ba224045c",
@@ -492,6 +492,55 @@
         }
       ],
       "notes": "Two things have to be true before it can recognise anybody. Viewer identity must be switched on for this app \u2014 it is off by default and a system administrator turns it on \u2014 and the app must not be public, because Launchpad withholds the email address from a public app and the address is how this desk identifies people. The app explains both on the page rather than looking broken. For data that survives a restart, map a volume: that means isolated mode, since shared mode refuses a storage mapping at deploy time."
+    },
+    {
+      "id": "ea35cc5e-4bf1-4096-9df5-dcf7df19a8e3",
+      "kind": "example",
+      "name": "Support Review",
+      "summary": "A notebook executed once at deploy time and served as the document that fell out.",
+      "description": "The notebook example. One .ipynb at the root of a repository is an app: Launchpad installs its requirements.txt, executes every cell once at deploy time with the app's own environment, and serves the HTML at /apps/{slug}/ \u2014 there is no kernel behind the published page, and a wake, a crash restore or a repair serves the same file. The report is a monthly support-desk review \u2014 arrival volume by team, first response against a configurable target, and the open backlog by age \u2014 drawn from a seeded generator, so replacing one cell with a query is the whole of adopting it. What is worth reading is the framework rather than the data: configuration comes from the environment and is clamped, because a cell that raises fails the deploy and a report should not be taken down by somebody typing 'twelve' into a settings box; and the closing cell prints the variable names it read and deliberately not their values, because whatever a cell prints ends up in the published document and on a public app published means the internet.",
+      "author": "Launchpad",
+      "language": "Python",
+      "tags": [
+        "notebook",
+        "jupyter",
+        "pandas",
+        "matplotlib",
+        "reporting",
+        "example"
+      ],
+      "version": "1.0.0",
+      "min_platform_version": "0.1.0",
+      "zip_url": "https://github.com/gopanair/launchpad-example-support-review/archive/refs/tags/v1.0.0.zip",
+      "source_url": "https://github.com/gopanair/launchpad-example-support-review",
+      "suggested_slug": "support-review",
+      "env": [
+        {
+          "name": "REVIEW_TITLE",
+          "required": false,
+          "default": "Support review",
+          "description": "The line the report opens with."
+        },
+        {
+          "name": "TEAMS",
+          "required": false,
+          "default": "Billing,Identity,Platform,Mobile",
+          "description": "Comma-separated team names. The first eight are used."
+        },
+        {
+          "name": "PERIOD_WEEKS",
+          "required": false,
+          "default": "12",
+          "description": "How many weeks the review covers. Clamped to 4-52."
+        },
+        {
+          "name": "SLA_HOURS",
+          "required": false,
+          "default": "8",
+          "description": "The first-response target in hours. Clamped to 1-168."
+        }
+      ],
+      "notes": "Nothing is re-rendered by a restart: to refresh the numbers, deploy again, or give the app's Overview tab a re-render schedule, which is a full deploy on a cron expression. The engine is nbconvert, the default for an .ipynb; a repo wanting a contents sidebar, code folding and callouts declares [notebook] engine = \"quarto\" instead, which is refused rather than substituted on an install whose operator has not installed Quarto. Jobs work here, unlike on a static app \u2014 a notebook release has an interpreter \u2014 but viewer identity does not, because at run time there is no process to hold an app token."
     }
   ]
 }
