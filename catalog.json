@@ -678,7 +678,7 @@
         "go"
       ],
       "version": "1.0.0",
-      "min_platform_version": "0.2.1",
+      "min_platform_version": "0.2.0",
       "repo_url": "https://github.com/gopanair/launchpad-ext-migration-console",
       "ref": "v1.0.0",
       "source_url": "https://github.com/gopanair/launchpad-ext-migration-console",
@@ -699,7 +699,7 @@
           "description": "Any long passphrase. Each target install's deploy key is encrypted with it before it is written to the database, so a database backup is not a copy of your estate's push credentials."
         }
       ],
-      "notes": "Needs a Launchpad that can mint a read-scoped deploy key \u2014 0.2.1 or later. Until then the Gallery shows it as needing a newer Launchpad rather than installing an app that cannot authenticate. The console holds a deploy key for each install it can push to, and each of those can deploy to any app on that install. Install it on the install your developers use, give it a read-scoped deploy key here and a deploy-scoped key on each target, and add a scheduled task pointing at /tasks/tick. The Install page inside the app lists every step and shows what is still outstanding."
+      "notes": "Needs a Launchpad that can mint a read-scoped deploy key \u2014 0.2.0 or later. The console holds a deploy key for each install it can push to, and each of those can deploy to any app on that install. Install it on the install your developers use, give it a read-scoped deploy key here and a deploy-scoped key on each target, and add a scheduled task pointing at /tasks/tick. The Install page inside the app lists every step and shows what is still outstanding."
     }
   ]
 }
