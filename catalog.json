@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-31T01:48:13Z",
+  "generated_at": "2026-08-31T02:00:51Z",
   "items": [
     {
       "id": "5b64ef63-5514-4964-9f72-1d2ba224045c",
@@ -819,10 +819,10 @@
         "reference"
       ],
       "icon": "book-open",
-      "version": "2.0.0",
+      "version": "2.0.1",
       "min_platform_version": "0.1.0",
       "repo_url": "https://github.com/gopanair/launchpad-ext-user-guide",
-      "ref": "v2.0.0",
+      "ref": "v2.0.1",
       "source_url": "https://github.com/gopanair/launchpad-ext-user-guide",
       "suggested_slug": "_user-guide",
       "notes": "Installs on a reserved slug and is listed on the Documentation page rather than in the app list. It is an ordinary static app: it holds no credential and reaches nothing privileged."
@@ -842,10 +842,10 @@
         "administration"
       ],
       "icon": "book-open",
-      "version": "2.0.0",
+      "version": "2.0.1",
       "min_platform_version": "0.1.0",
       "repo_url": "https://github.com/gopanair/launchpad-ext-admin-guide",
-      "ref": "v2.0.0",
+      "ref": "v2.0.1",
       "source_url": "https://github.com/gopanair/launchpad-ext-admin-guide",
       "suggested_slug": "_admin-guide",
       "notes": "Installs on a reserved slug and is listed on the Documentation page rather than in the app list. It is an ordinary static app: it holds no credential and reaches nothing privileged."
@@ -866,10 +866,10 @@
         "reference"
       ],
       "icon": "book-open",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "min_platform_version": "0.1.0",
       "repo_url": "https://github.com/gopanair/launchpad-ext-cli-guide",
-      "ref": "v1.0.1",
+      "ref": "v1.0.2",
       "source_url": "https://github.com/gopanair/launchpad-ext-cli-guide",
       "suggested_slug": "_cli-guide",
       "notes": "Installs on a reserved slug and is listed on the Documentation page rather than in the app list. It is an ordinary static app: it holds no credential and reaches nothing privileged."
