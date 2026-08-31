@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-28T14:10:00Z",
+  "generated_at": "2026-08-31T01:48:13Z",
   "items": [
     {
       "id": "5b64ef63-5514-4964-9f72-1d2ba224045c",
@@ -809,7 +809,7 @@
       "kind": "extension",
       "name": "Launchpad user guide",
       "summary": "How to deploy, run and share an app on Launchpad.",
-      "description": "The manual for people who build and run apps on Launchpad: deploying from a repository or from your machine, what each framework is detected by and expects, language version pins, visibility and sharing, scheduled tasks and jobs, app data and storage, and the failures people actually hit. A static site with its own search index \u2014 it makes no outbound request and works on an install with no route off the network.",
+      "description": "The manual for people who build and run apps on Launchpad, organised by what you are doing: deploying from a repository, from your machine, from an archive or from the gallery; what each framework is detected by and what it expects; language version pins; releases and rollback; sharing with people and groups, and asking for access to somebody else's app; scheduled tasks, jobs, app data and storage. Ends with the failures people actually hit and which log has the answer. A static site with its own search index \u2014 it makes no outbound request and works on an install with no route off the network.",
       "author": "Launchpad",
       "language": "Static",
       "tags": [
@@ -819,10 +819,10 @@
         "reference"
       ],
       "icon": "book-open",
-      "version": "1.0.1",
+      "version": "2.0.0",
       "min_platform_version": "0.1.0",
       "repo_url": "https://github.com/gopanair/launchpad-ext-user-guide",
-      "ref": "v1.0.1",
+      "ref": "v2.0.0",
       "source_url": "https://github.com/gopanair/launchpad-ext-user-guide",
       "suggested_slug": "_user-guide",
       "notes": "Installs on a reserved slug and is listed on the Documentation page rather than in the app list. It is an ordinary static app: it holds no credential and reaches nothing privileged."
@@ -832,7 +832,7 @@
       "kind": "extension",
       "name": "Launchpad admin guide",
       "summary": "Installing, configuring and running a Launchpad install.",
-      "description": "The install's own manual: the two ways to install, first run and the built-in administrator, sign-in providers and sessions, execution modes, locking and quiet apps, and the security surfaces \u2014 anonymous access, reachability, trusted sources, dependency policy, at-rest encryption and the audit log. Says what each switch takes away rather than what it offers, which is the part that is hard to find out by clicking.",
+      "description": "The install's own manual, one chapter per subsystem, with a reference at the back: every runtime setting and every environment variable in a table. Covers the two ways to install, first run and the built-in administrator, sign-in providers, directory groups and the SCIM feed, execution modes, the build pipeline and its cache, locking and quiet apps, and the security surfaces \u2014 anonymous access, reachability, trusted sources, dependency policy, at-rest encryption, machine credentials and the audit log. Says what each switch takes away rather than what it offers, which is the part that is hard to find out by clicking.",
       "author": "Launchpad",
       "language": "Static",
       "tags": [
@@ -842,10 +842,10 @@
         "administration"
       ],
       "icon": "book-open",
-      "version": "1.0.1",
+      "version": "2.0.0",
       "min_platform_version": "0.1.0",
       "repo_url": "https://github.com/gopanair/launchpad-ext-admin-guide",
-      "ref": "v1.0.1",
+      "ref": "v2.0.0",
       "source_url": "https://github.com/gopanair/launchpad-ext-admin-guide",
       "suggested_slug": "_admin-guide",
       "notes": "Installs on a reserved slug and is listed on the Documentation page rather than in the app list. It is an ordinary static app: it holds no credential and reaches nothing privileged."
