@@ -905,44 +905,6 @@
         }
       ],
       "notes": "Read-only and safe to run on any install: it writes nothing and the single write-confinement test cleans up after itself. It makes loopback requests to neighbouring apps and the platform API to prove what it can reach — expected of a probe, and it reads only what an unauthenticated caller could."
-    },
-    {
-      "id": "f40ea6fb-fd42-425d-a10b-cd8ced3d1da3",
-      "kind": "extension",
-      "name": "Audit Pack",
-      "summary": "NIST SP 800-171 Rev 3, mapped to Launchpad, with the live evidence read off this install.",
-      "description": "Two documents for an assessment. The first is the control mapping: every one of the 97 requirements of NIST SP 800-171 Revision 3, with what Launchpad does about it, what you must still do yourself, and which of the catalog's organization-defined parameters your install already answers — the account-inactivity period, the session timeouts, the malware response. It renders with no configuration at all, because it is true of any Launchpad install.\n\nThe second is the evidence: what this install is actually configured to do, read live, with the route each reading came from. Twenty-four of the thirty-seven evidence items can be read by the app itself given an administrator API key. The rest cannot — Launchpad refuses its most sensitive administrative reads to every API key by name, and those refusals are the identity, credential and configuration-management evidence an assessor asks for first. For those the app hands you lpaudit, a command-line collector you download from its home page in one click, which signs in as an administrator, reads everything, photographs the screens and writes one self-contained HTML report.\n\nThe responsibility split is the point: 21 requirements are Launchpad's, 49 are shared, 8 are inherited from the layer below and 19 have nothing to do with Launchpad at all. This is audit support, not a certification.",
-      "author": "Launchpad",
-      "language": "python",
-      "tags": [
-        "security",
-        "compliance",
-        "governance",
-        "admin"
-      ],
-      "icon": "shield-check",
-      "version": "1.0.0",
-      "repo_url": "https://github.com/gopanair/launchpad-ext-audit-pack",
-      "ref": "v1.0.0",
-      "source_url": "https://github.com/gopanair/launchpad-ext-audit-pack",
-      "suggested_slug": "audit-pack",
-      "visibility": "hidden",
-      "env": [
-        {
-          "name": "LAUNCHPAD_URL",
-          "required": false,
-          "default": "",
-          "description": "This install's base URL, e.g. https://launchpad.example.com. Optional — the control mapping needs nothing."
-        },
-        {
-          "name": "LAUNCHPAD_TOKEN",
-          "required": false,
-          "default": "",
-          "sensitive": true,
-          "description": "A personal API key (lpu_) belonging to an administrator, so the app can read the 24 evidence items a key is allowed. Optional, and lpaudit is the better path: it holds a session that ends when it exits and reaches all 37."
-        }
-      ],
-      "notes": "Admin-only. Reads only — it writes nothing to the install."
     }
   ]
 }
