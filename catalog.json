@@ -820,10 +820,10 @@
         "reference"
       ],
       "icon": "book-open",
-      "version": "2.0.1",
+      "version": "2.0.2",
       "min_platform_version": "0.1.0",
       "repo_url": "https://github.com/gopanair/launchpad-ext-user-guide",
-      "ref": "v2.0.1",
+      "ref": "v2.0.2",
       "source_url": "https://github.com/gopanair/launchpad-ext-user-guide",
       "suggested_slug": "_user-guide",
       "notes": "Installs on a reserved slug and is listed on the Documentation page rather than in the app list. It is an ordinary static app: it holds no credential and reaches nothing privileged."
@@ -833,7 +833,7 @@
       "kind": "extension",
       "name": "Launchpad admin guide",
       "summary": "Installing, configuring and running a Launchpad install.",
-      "description": "The install's own manual, one chapter per subsystem, with a reference at the back: every runtime setting and every environment variable in a table. Covers the two ways to install, first run and the built-in administrator, sign-in providers, directory groups and the SCIM feed, execution modes, the build pipeline and its cache, locking and quiet apps, and the security surfaces — anonymous access, reachability, trusted sources, dependency policy, at-rest encryption, machine credentials and the audit log. Says what each switch takes away rather than what it offers, which is the part that is hard to find out by clicking.",
+      "description": "The install's own manual, one chapter per subsystem, with a reference at the back: every runtime setting and every environment variable in a table. Covers the two ways to install, first run and the built-in administrator, sign-in providers, directory groups and the SCIM feed, execution modes, the build pipeline and its cache, locking and quiet apps, and the security surfaces — anonymous access, reachability, trusted sources, dependency policy, at-rest encryption, machine credentials and the audit log. Also what an app has been given, what this install tells an assessor, and restricting a provider to named directory groups. Says what each switch takes away rather than what it offers, which is the part that is hard to find out by clicking.",
       "author": "Launchpad",
       "language": "Static",
       "tags": [
@@ -843,10 +843,10 @@
         "administration"
       ],
       "icon": "book-open",
-      "version": "2.0.1",
+      "version": "2.0.2",
       "min_platform_version": "0.1.0",
       "repo_url": "https://github.com/gopanair/launchpad-ext-admin-guide",
-      "ref": "v2.0.1",
+      "ref": "v2.0.2",
       "source_url": "https://github.com/gopanair/launchpad-ext-admin-guide",
       "suggested_slug": "_admin-guide",
       "notes": "Installs on a reserved slug and is listed on the Documentation page rather than in the app list. It is an ordinary static app: it holds no credential and reaches nothing privileged."
@@ -856,7 +856,7 @@
       "kind": "extension",
       "name": "Launchpad CLI and SDK guide",
       "summary": "The lp command-line client, and the app SDK your code calls back with.",
-      "description": "Reference for the two developer surfaces: lp's sixteen commands and its exit-code contract, and the app SDK in all four languages it ships in — Go, Node, Python and R. Covers the credential rules, what goes in a deploy bundle, app data, notifications, jobs, and the six role words an app verifies with no round trip.",
+      "description": "Reference for the two developer surfaces: lp's eighteen commands and its exit-code contract, and the app SDK in all four languages it ships in — Go, Node, Python and R. Covers the credential rules, what goes in a deploy bundle, app data, notifications, jobs, and the six role words an app verifies with no round trip.",
       "author": "Launchpad",
       "language": "Static",
       "tags": [
@@ -867,10 +867,10 @@
         "reference"
       ],
       "icon": "book-open",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "min_platform_version": "0.1.0",
       "repo_url": "https://github.com/gopanair/launchpad-ext-cli-guide",
-      "ref": "v1.0.2",
+      "ref": "v1.0.3",
       "source_url": "https://github.com/gopanair/launchpad-ext-cli-guide",
       "suggested_slug": "_cli-guide",
       "notes": "Installs on a reserved slug and is listed on the Documentation page rather than in the app list. It is an ordinary static app: it holds no credential and reaches nothing privileged."
