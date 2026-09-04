@@ -820,10 +820,10 @@
         "reference"
       ],
       "icon": "book-open",
-      "version": "2.0.2",
+      "version": "2.0.3",
       "min_platform_version": "0.1.0",
       "repo_url": "https://github.com/gopanair/launchpad-ext-user-guide",
-      "ref": "v2.0.2",
+      "ref": "v2.0.3",
       "source_url": "https://github.com/gopanair/launchpad-ext-user-guide",
       "suggested_slug": "_user-guide",
       "notes": "Installs on a reserved slug and is listed on the Documentation page rather than in the app list. It is an ordinary static app: it holds no credential and reaches nothing privileged."
@@ -843,10 +843,10 @@
         "administration"
       ],
       "icon": "book-open",
-      "version": "2.0.2",
+      "version": "2.0.3",
       "min_platform_version": "0.1.0",
       "repo_url": "https://github.com/gopanair/launchpad-ext-admin-guide",
-      "ref": "v2.0.2",
+      "ref": "v2.0.3",
       "source_url": "https://github.com/gopanair/launchpad-ext-admin-guide",
       "suggested_slug": "_admin-guide",
       "notes": "Installs on a reserved slug and is listed on the Documentation page rather than in the app list. It is an ordinary static app: it holds no credential and reaches nothing privileged."
@@ -867,10 +867,10 @@
         "reference"
       ],
       "icon": "book-open",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "min_platform_version": "0.1.0",
       "repo_url": "https://github.com/gopanair/launchpad-ext-cli-guide",
-      "ref": "v1.0.3",
+      "ref": "v1.0.4",
       "source_url": "https://github.com/gopanair/launchpad-ext-cli-guide",
       "suggested_slug": "_cli-guide",
       "notes": "Installs on a reserved slug and is listed on the Documentation page rather than in the app list. It is an ordinary static app: it holds no credential and reaches nothing privileged."
